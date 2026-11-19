@@ -121,6 +121,9 @@ footer{position:absolute;bottom:0;left:0;right:0;background:var(--cream);padding
 @keyframes pop2{to{transform:translateY(-70px) scale(1.7);opacity:0}}
 .wave:nth-of-type(2){animation-duration:8s}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.browser .shot img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.stage{position:relative;z-index:1}
+.fish{z-index:0}
 /* === responsif === */
 @media(max-width:1024px){
   .grid2{grid-template-columns:220px 1fr;gap:24px}
@@ -281,12 +284,13 @@ const tabs=[['01 // Perkenalan','Tentang Saya','Perkenalkan, saya Zainal Aminin,
 function tab(i){const t=tabs[i];$('#pane').innerHTML=`<div class="mono" style="font-size:10px;color:var(--teal)">${t[0]}</div><h3>${t[1]}</h3><p>${t[2]}</p><div class="chips">${t[3].map(x=>`<span>${x}</span>`).join('')}</div>`;$$('#tabs button').forEach((b,j)=>b.classList.toggle('on',i==j))}
 $$('#tabs button').forEach(b=>b.onclick=()=>tab(+b.dataset.i));tab(0);
 /* proyek */
-const P=[{n:'Cat Cafe',tp:'FRONTEND',ic:'🌐',d:'Membuat website menggunakan HTML, CSS, dan JavaScript dengan tampilan yang responsif dan mudah digunakan.',a:['HTML & CSS','JavaScript'],k:['HTML','CSS','JavaScript']},
+const P=[{n:'Cat Cafe',tp:'FRONTEND',ic:'🌐',img:'images/catcafe.jpg',d:'Membuat website menggunakan HTML, CSS, dan JavaScript dengan tampilan yang responsif dan mudah digunakan.',a:['HTML & CSS','JavaScript'],k:['HTML','CSS','JavaScript']},
 {n:'Toko Pakan Kucing',tp:'PHP & MYSQL',ic:'🗄️',d:'Mengembangkan website menggunakan HTML.',a:['MySQL','Laravel'],k:['PHP','MySQL','XAMPP']},
-{n:'Toko Mainan CRUD',tp:'FRAMEWORK',ic:'🚀',d:'Membuat aplikasi pengelolaan data menggunakan PHP dan MySQL dengan fitur tambah, tampil, edit, dan hapus data.',a:['Laravel','Database','Tambah • Edit • Hapus'],k:['Laravel','PHP','MySQL']}];
-let cur=0;function proj(i){cur=i;const p=P[i];$('#stage').innerHTML=`<div class="card proj"><span class="tag">0${i+1} // ${p.tp}</span><h3 style="font-size:26px">${p.n}</h3><p>${p.d}</p><div class="row">${p.a.map(x=>`<div>${x}</div>`).join('')}</div><div class="chips" style="margin:0 0 14px">${p.k.map(x=>`<span>${x}</span>`).join('')}</div><button class="btn p" onclick="openP(${i})">Lihat Detail ›</button></div><div class="browser"><div class="bar2">● ● ● &nbsp; app://${p.n.toLowerCase().replace(/\W/g,'')}</div><div class="shot">${p.ic}</div></div>`;$$('#plist button').forEach((b,j)=>b.classList.toggle('on',i==j))}
+{n:'Toko Mainan CRUD',tp:'FRAMEWORK',ic:'🚀',img:'images/zenplay.jpg',d:'Membuat aplikasi pengelolaan data menggunakan PHP dan MySQL dengan fitur tambah, tampil, edit, dan hapus data.',a:['Laravel','Database','Tambah • Edit • Hapus'],k:['Laravel','PHP','MySQL']}];
+const shot=p=>p.img?`<img src="${p.img}" alt="Tampilan ${p.n}" loading="lazy">`:p.ic;
+let cur=0;function proj(i){cur=i;const p=P[i];$('#stage').innerHTML=`<div class="card proj"><span class="tag">0${i+1} // ${p.tp}</span><h3 style="font-size:26px">${p.n}</h3><p>${p.d}</p><div class="row">${p.a.map(x=>`<div>${x}</div>`).join('')}</div><div class="chips" style="margin:0 0 14px">${p.k.map(x=>`<span>${x}</span>`).join('')}</div><button class="btn p" onclick="openP(${i})">Lihat Detail ›</button></div><div class="browser"><div class="bar2">● ● ● &nbsp; app://${p.n.toLowerCase().replace(/\W/g,'')}</div><div class="shot">${shot(p)}</div></div>`;$$('#plist button').forEach((b,j)=>b.classList.toggle('on',i==j))}
 $('#plist').innerHTML=P.map((p,i)=>`<button>${String(i+1).padStart(2,'0')} ${p.n}</button>`).join('');$$('#plist button').forEach((b,i)=>b.onclick=()=>proj(i));proj(0);
-window.openP=i=>{const p=P[i];$('#mb').innerHTML=`<span class="chips"><span style="background:var(--yel)">${p.tp}</span></span><h3 style="font-size:24px">${p.n}</h3><div class="browser" style="margin:14px 0"><div class="shot" style="height:150px">${p.ic}</div></div><p><b>LATAR BELAKANG</b><br>${p.d}</p><div class="chips">${p.k.map(x=>`<span>${x}</span>`).join('')}</div>`;modal.classList.add('on')};
+window.openP=i=>{const p=P[i];$('#mb').innerHTML=`<span class="chips"><span style="background:var(--yel)">${p.tp}</span></span><h3 style="font-size:24px">${p.n}</h3><div class="browser" style="margin:14px 0"><div class="shot" style="height:150px">${shot(p)}</div></div><p><b>LATAR BELAKANG</b><br>${p.d}</p><div class="chips">${p.k.map(x=>`<span>${x}</span>`).join('')}</div>`;modal.classList.add('on')};
 modal.onclick=e=>{if(e.target==modal)modal.classList.remove('on')};
 /* tech stack */
 const T={'Programming & Development':['HTML','CSS','JavaScript','PHP','MySQL','Laravel'],'Tools & Software':['Visual Studio Code','XAMPP / Laragon','Figma',]};

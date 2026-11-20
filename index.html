@@ -40,7 +40,7 @@ nav .brand{display:flex;gap:10px;align-items:center;color:#fff;font-weight:700;f
 .btn{font:700 11px 'JetBrains Mono';padding:9px 16px;border:2px solid var(--ink);border-radius:8px;background:#fff;color:var(--ink);text-decoration:none;box-shadow:3px 3px 0 var(--ink);transition:.2s;cursor:pointer}
 .btn:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}.btn.p{background:var(--blue);color:#fff}.btn.y{background:var(--yel)}
 .deco{position:absolute;font-size:46px;user-select:none}
-#duck{cursor:pointer;font-size:38px;transition:left 2.5s ease-in-out;left:6%;top:30%}
+#duck{cursor:pointer;width:58px;height:auto;transition:left 2.5s ease-in-out;left:6%;top:30%}
 #duck:active{transform:scale(1.3)}
 .say{position:absolute;background:#fff;color:var(--ink);font:700 9px 'JetBrains Mono';padding:5px 9px;border-radius:10px;border:2px solid var(--ink);white-space:nowrap;display:none}
 #crab{right:4%;bottom:14%;font-size:30px;transition:right 1.5s}
@@ -186,10 +186,11 @@ footer{position:absolute;bottom:0;left:0;right:0;background:var(--cream);padding
 
 <header id="hero">
   <div class="wave" style="top:38%"></div><div class="wave" style="top:48%;animation-delay:-2s"></div>
-  <div class="deco" id="duck">🦆</div><div class="say" id="say"></div>
+  <!-- Burung camar (seagull) sebagai ilustrasi SVG inline -->
+  <svg class="deco" id="duck" viewBox="0 0 60 40" role="img" aria-label="Burung camar"><path d="M3 22Q13 3 30 18Q47 3 57 22Q45 15 36 24Q30 27 24 24Q15 15 3 22Z" fill="#9AA8B5" stroke="#5B6876" stroke-width="1"/><ellipse cx="30" cy="24" rx="9" ry="5" fill="#fff" stroke="#5B6876" stroke-width="1"/><circle cx="39" cy="20" r="4.5" fill="#fff" stroke="#5B6876" stroke-width="1"/><path d="M42 18.5L49 20.5L42 22Z" fill="#F2B233"/><circle cx="40" cy="19" r="1" fill="#111"/></svg><div class="say" id="say"></div>
   <h1 id="name"><div data-t="ZAINAL"></div><div data-t="AMININ"></div></h1>
   <p class="sub">Siswa SMK Rekayasa Perangkat Lunak (RPL). Antusias di bidang pemrograman, pengembangan website, aplikasi, dan database.</p>
-  <div class="btns"><a class="btn p" href="#kasus">↓ Lihat Proyek</a></div>
+  <div class="btns"><a class="btn p" href="#kasus">↓ Lihat Proyek</a><a class="btn" href="images/cv-zainal.jpg" download="CV-Zainal-Aminin.jpg">⇩ Download CV</a></div>
   <div class="sand"></div>
   <div class="deco" style="left:3%;bottom:6%;font-size:70px">🌴</div>
   <div class="deco boat">⛵</div>
@@ -272,7 +273,7 @@ let t0=performance.now();
   const w=k?Math.sin(performance.now()/500+i*.7)*7:0;l.s.style.transform=`translate(${l.x}px,${l.y+w}px) rotate(${l.x*.1+w*.4}deg)`});
  requestAnimationFrame(tick)})();
 /* bebek & kepiting */
-const duck=$('#duck'),say=$('#say'),msgs=['QUACK!','Selamat datang di pantai!','Ayo lihat proyeknya!','Psst… scroll ke bawah ↓'];let mi=0;
+const duck=$('#duck'),say=$('#say'),msgs=['KIAAW!','Selamat datang di pantai!','Ayo lihat proyeknya!','Psst… scroll ke bawah ↓'];let mi=0;
 duck.onclick=()=>{say.textContent=msgs[mi++%msgs.length];say.style.cssText=`display:block;left:${duck.offsetLeft}px;top:${duck.offsetTop-30}px`;setTimeout(()=>say.style.display='none',1800)};
 setInterval(()=>duck.style.left=(6+Math.random()*82)+'%',4000);
 setInterval(()=>$('#crab').style.right=(2+Math.random()*60)+'%',3500);
